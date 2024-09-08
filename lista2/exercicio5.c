@@ -15,4 +15,6 @@ int main() {
 
     litros = valorDispAbastecimento / precoLitroGasolina;
     printf("\n Voce abasteceu %g litros de gasolina", litros);
+    
+    return 0;
 }

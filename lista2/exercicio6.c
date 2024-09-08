@@ -20,4 +20,6 @@ int main() {
     
     totalArrecadado = (qtdSmartphones * precoSmartphone) + (qtdTablets * precoTablet);
     printf("\n O total arrecadado no dia foi de R$ %g", totalArrecadado);
+
+    return 0;
 }

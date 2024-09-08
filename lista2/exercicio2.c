@@ -15,4 +15,6 @@ int main() {
 
     reaisNecessarios = dolaresDesejados * cotacaoDolarReal;
     printf("\nSera necessario R$ %g reais para adquirir $%g dolares", reaisNecessarios, dolaresDesejados);
+
+    return 0;
 }

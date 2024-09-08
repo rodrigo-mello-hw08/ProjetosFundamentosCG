@@ -11,4 +11,6 @@ int main() {
 
     int tempoEmSegundos = tempoEmMinutos * 60;
     printf("\nEsse mesmo tempo em minutos é equivalente a %d segundos", tempoEmSegundos);
+
+    return 0;
 }

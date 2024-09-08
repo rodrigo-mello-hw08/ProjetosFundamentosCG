@@ -13,4 +13,6 @@ int main() {
 
     valorASerPago = (pesoPratoCliente / 1000) * precoKilo;
     printf("Valor a ser pago: R$ %g", valorASerPago);
+
+    return 0;
 }
