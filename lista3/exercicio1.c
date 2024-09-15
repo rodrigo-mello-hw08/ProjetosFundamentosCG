@@ -21,6 +21,5 @@ int main() {
         printf("\nO resultado da divisao e: %g", resultado);
     }
     
-
     return 0;
 }
