@@ -1,5 +1,5 @@
 # ProjetosFundamentosCG
-Repositorio contendo os algoritmos da cadeira  de **Algoritmos e Programação: Fundamentos**
+Repositório contendo os algoritmos da cadeira de **Algoritmos e Programação: Fundamentos**
 ## Informações
 - Autor: Rodrigo Mello
 - Curso: Ciência da Computação
