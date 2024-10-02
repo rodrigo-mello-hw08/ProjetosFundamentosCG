@@ -39,7 +39,7 @@ float converter(float cotacaoDolar, float cotacaoEuro, float valor, int opcao) {
             valorEmReais = valor * cotacaoEuro;
             valorFinal = valorEmReais / cotacaoDolar; break;
         case 4:
-            valorFinal = valor * cotacaoEuro;
+            valorFinal = valor * cotacaoEuro; break;
         case 5:
             valorEmReais = valor * cotacaoDolar;
             valorFinal = valorEmReais / cotacaoEuro;  break;
