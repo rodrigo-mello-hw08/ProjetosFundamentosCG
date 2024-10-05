@@ -1,5 +1,6 @@
 # ProjetosFundamentosCG
 Repositório contendo os algoritmos da cadeira de **Algoritmos e Programação: Fundamentos**
+
 ## Informações
 - Autor: Rodrigo Mello
 - Curso: Ciência da Computação
@@ -7,7 +8,8 @@ Repositório contendo os algoritmos da cadeira de **Algoritmos e Programação: 
 - Professora: Rossana Baptista Queiroz
 
 ## Trabalhos
-- [Trabalho prático Grau A](https://github.com/rodrigo-mello-hw08/ProjetosFundamentosCG/tree/main/trabalho1GA)
+- [Trabalho Prático Grau A](https://github.com/rodrigo-mello-hw08/ProjetosFundamentosCG/tree/main/trabalho1GA)
+- [Exercício corrida de Hamsters](https://github.com/rodrigo-mello-hw08/ProjetosFundamentosCG/tree/main/exercicio-corrida-de-hamsters)
 
 ## Listas
 - [Lista 1](https://github.com/rodrigo-mello-hw08/ProjetosFundamentosCG/tree/main/lista1)
