@@ -16,4 +16,8 @@ Repositório contendo os algoritmos da cadeira de **Algoritmos e Programação: 
 - [Lista 2](https://github.com/rodrigo-mello-hw08/ProjetosFundamentosCG/tree/main/lista2)
 - [Lista 3](https://github.com/rodrigo-mello-hw08/ProjetosFundamentosCG/tree/main/lista3)
 - [Lista 4](https://github.com/rodrigo-mello-hw08/ProjetosFundamentosCG/tree/main/lista4)
+- [Lista 5](https://github.com/rodrigo-mello-hw08/ProjetosFundamentosCG/tree/main/lista5)
+
+## Provas
+- [Prova Grau A](https://github.com/rodrigo-mello-hw08/ProjetosFundamentosCG/tree/main/provaGA-RodrigoMello)
 
