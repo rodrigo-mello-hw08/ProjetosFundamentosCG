@@ -79,8 +79,8 @@ int main() {
     printf("\n >> O maior valor do array e %d", maiorValor);
 
     printf("\n\n F) Imprimir a soma e o produto acumulado dos valores dos elementos do vetor");
-    printf("\n >> A soma dos valores e igual a %g", somaValoresVetor);
-    printf("\n >> O produto dos valores e igual a %g", produtoValoresVetor);
+    printf("\n >> A soma dos valores e igual a %2.f", somaValoresVetor);
+    printf("\n >> O produto dos valores e igual a %2.f", produtoValoresVetor);
 
     printf("\n\n G) Imprimir o vetor em ordem inversa\n");
     for (int i=TAMANHO-1 ; i >= 0 ; i--) {
