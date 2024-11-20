@@ -6,15 +6,15 @@ const int TAMANHO_ARRAY_POCOES = 7;
 
 /* Tipos*/
 typedef struct {
-    char nome[30]; // Nome do ingrediente
-    int quantidade; // Quantidade atual do ingrediente em estoque
+    char nome[30]; 
+    int quantidade; 
     char unidadeMedida[5];
 } Ingrediente;
 
 typedef struct {
-    char nome[30]; // Nome da poção
+    char nome[30];
     int ingredientes[7]; 
-    int quantidades[7]; // Array com a quantidade de cada ingrediente necessário
+    int quantidades[7]; 
 } Pocao;
 
 /* Inicializadores de struct*/
