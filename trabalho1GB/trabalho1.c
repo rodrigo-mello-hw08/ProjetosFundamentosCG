@@ -4,7 +4,7 @@
 const int TAMANHO_ARRAY_INGREDIENTES = 7;
 const int TAMANHO_ARRAY_POCOES = 7;
 
-/* Tipos*/
+/* Tipos */
 typedef struct {
     char nome[30]; 
     int quantidade; 
@@ -17,7 +17,7 @@ typedef struct {
     int quantidades[7]; 
 } Pocao;
 
-/* Inicializadores de struct*/
+/* Inicializadores de struct */
 Ingrediente inicializarIngrediente(char nome[30], int quantidade, char unidadeMedida[5]) {
     Ingrediente ingrediente;
     strcpy(ingrediente.nome, nome);
@@ -34,7 +34,7 @@ Pocao inicializarPocao(char nome[30], int ingredientes[7], int quantidades[7]) {
     return pocao;
 }
 
-/* Inicializadores de listas*/
+/* Inicializadores de listas */
 void inicializarIngredientes(Ingrediente* ingredientes) {
     ingredientes[0] = inicializarIngrediente("Po de Fenix", 100, "g");
     ingredientes[1] = inicializarIngrediente("Essencia Celestial", 50, "ml");
