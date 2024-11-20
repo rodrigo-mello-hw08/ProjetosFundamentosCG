@@ -10,6 +10,7 @@ Repositório contendo os algoritmos da cadeira de **Algoritmos e Programação: 
 ## Trabalhos
 - [Trabalho Prático Grau A](https://github.com/rodrigo-mello-hw08/ProjetosFundamentosCG/tree/main/trabalho1GA)
 - [Exercício corrida de Hamsters](https://github.com/rodrigo-mello-hw08/ProjetosFundamentosCG/tree/main/exercicio-corrida-de-hamsters)
+- [Trabalho Prático Grau B](https://github.com/rodrigo-mello-hw08/ProjetosFundamentosCG/tree/main/trabalho1GB)
 
 ## Listas
 - [Lista 1](https://github.com/rodrigo-mello-hw08/ProjetosFundamentosCG/tree/main/lista1)
