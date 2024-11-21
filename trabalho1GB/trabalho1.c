@@ -3,9 +3,10 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
+#include <stdbool.h> 
 
 const int TAMANHO_ARRAY_INGREDIENTES = 7;
-const int TAMANHO_ARRAY_POCOES = 7;
+const int TAMANHO_ARRAY_POCOES = 5;
 
 /* Tipos */
 typedef struct {
@@ -97,28 +98,16 @@ void exibirItens(Ingrediente* ingredientes) {
     printf("\n");
 }
 
-/* printters */
-void consultarIngredientes(Ingrediente* ingredientes) {
-    printf("\nIngredientes Disponiveis:");
-    exibirItens(ingredientes);
-}
-
 void estoqueAtual(Ingrediente* ingredientes) {
     printf("\nEstoqueAtual:");
     exibirItens(ingredientes);
 }
 
-int lerOpcaoMenu() {
-    int opcao = -1;
-    while (opcao < 1) {
-        printf("\n1. Consultar Ingredientes Disponiveis");
-        printf("\n2. Preparar Pocao");
-        printf("\n3. Reabastecer Ingrediente");
-        printf("\n4. Sair do Programa:\n");
-        scanf(" %d", &opcao);    
-    }
-    return opcao;
+void consultarIngredientes(Ingrediente* ingredientes) {
+    printf("\nIngredientes Disponiveis:");
+    exibirItens(ingredientes);
 }
+
 void reabastecerIgrediente(Ingrediente* ingredientes) {
     estoqueAtual(ingredientes);
     int item = -1;
@@ -136,6 +125,56 @@ void reabastecerIgrediente(Ingrediente* ingredientes) {
         ingredientes[item-1].nome, 
         ingredientes[item-1].quantidade,
         ingredientes[item-1].unidadeMedida);
+}
+
+// void prepararPocao(Ingrediente* ingredientes, Pocao* pocoes) {
+    // bool possuiIngredientes = false;
+    // int item = -1;
+    // while (item < 1) {
+    //     printf("\nInforme a pocao que deseja preparar: ");
+    //     scanf(" %d", &item);
+    // }
+// }
+
+int obterNumeroIngredientes(Pocao pocao) {
+    int numero = 0;
+    for (int i = 0; i < TAMANHO_ARRAY_INGREDIENTES; i++) {
+        if (pocao.ingredientes[i] > 1) {
+            numero++;
+        }        
+    }
+    return numero;
+}
+
+
+void exibirPocoes(Pocao* pocao, Ingrediente* ingrediente) {
+    printf("\nPocoes");
+    for (int i = 0; i < TAMANHO_ARRAY_POCOES; i++) {
+        printf("\n%d. %s", i+1, pocao[i].nome);
+        int numeroIngredientesPocao = obterNumeroIngredientes(pocao[i]);
+        printf("\nIngredientes:");
+        for (int j = 0; j < numeroIngredientesPocao; j++) {
+            printf("\n%d - %s %d %s", 
+                j+1, 
+                ingrediente[j].nome, 
+                ingrediente[j].quantidade, 
+                ingrediente[j].unidadeMedida);
+        }
+        printf("\n");
+    }
+}
+
+int lerOpcaoMenu() {
+    int opcao = -1;
+    while (opcao < 1) {
+        printf("\n1. Consultar Ingredientes Disponiveis");
+        printf("\n2. Preparar Pocao");
+        printf("\n3. Reabastecer Ingrediente");
+        printf("\n4. Sair do Programa");
+        printf("\n5. Exibir possiveis pocoes\n");
+        scanf(" %d", &opcao);    
+    }
+    return opcao;
 }
 
 int main() {
@@ -157,6 +196,8 @@ int main() {
                 reabastecerIgrediente(ingredientes); break;
             case 4: 
                 printf("Saindo do sistema"); break;
+            case 5:
+                exibirPocoes(pocoes, ingredientes); break;
             default:
                 printf("Erro: opcao nao reconhecida"); break;
         }
