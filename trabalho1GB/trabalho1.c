@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <time.h>
+#include <unistd.h>
 
 const int TAMANHO_ARRAY_INGREDIENTES = 7;
 const int TAMANHO_ARRAY_POCOES = 7;
@@ -16,6 +19,21 @@ typedef struct {
     int ingredientes[7]; 
     int quantidades[7]; 
 } Pocao;
+
+/* limpar tela */
+void limparTela() {
+    printf("\nCarregando");
+    for (int i = 0; i < 5; i++) {
+        printf(".");
+        sleep(1);
+    }
+    
+    #ifdef _WIN32
+        system("cls"); // Windows
+    #else
+        system("clear"); // Linux/macOS
+    #endif
+}
 
 /* Inicializadores de struct */
 Ingrediente inicializarIngrediente(char nome[30], int quantidade, char unidadeMedida[5]) {
@@ -67,28 +85,81 @@ void inicializarPocoes(Pocao* pocoes) {
     pocoes[4] = inicializarPocao("Pocao Malvada", ingredientesPocao4, quantidadesPocoes4);
 }
 
-/* Printers */
-void imprimirIngrediente(Ingrediente ingrediente) {
-    printf("\n%s: quantidade %d %s", ingrediente.nome, ingrediente.quantidade, ingrediente.unidadeMedida);
+/* acoes */
+void exibirItens(Ingrediente* ingredientes) {
+    for (int i = 0; i < TAMANHO_ARRAY_INGREDIENTES; i++) {
+        printf("\n%d. %s: %d %s", 
+            i+1, 
+            ingredientes[i].nome, 
+            ingredientes[i].quantidade, 
+            ingredientes[i].unidadeMedida);
+    }
+    printf("\n");
 }
 
-void imprimirPocao(Pocao pocao) {
-    printf("\n%s", pocao.nome);
+/* printters */
+void consultarIngredientes(Ingrediente* ingredientes) {
+    printf("\nIngredientes Disponiveis:");
+    exibirItens(ingredientes);
+}
+
+void estoqueAtual(Ingrediente* ingredientes) {
+    printf("\nEstoqueAtual:");
+    exibirItens(ingredientes);
+}
+
+int lerOpcaoMenu() {
+    int opcao = -1;
+    while (opcao < 1) {
+        printf("\n1. Consultar Ingredientes Disponiveis");
+        printf("\n2. Preparar Pocao");
+        printf("\n3. Reabastecer Ingrediente");
+        printf("\n4. Sair do Programa:\n");
+        scanf(" %d", &opcao);    
+    }
+    return opcao;
+}
+void reabastecerIgrediente(Ingrediente* ingredientes) {
+    estoqueAtual(ingredientes);
+    int item = -1;
+    int quantidade = -1;
+    while (item < 1) {
+        printf("\nInforme o item no qual voce deseja reabastecer: ");
+        scanf(" %d", &item);
+    }
+    while (quantidade < 1) {
+        printf("\nInforme a quantidade que deseja rebastecer: ");
+        scanf(" %d", &quantidade);
+    }
+    ingredientes[item-1].quantidade += quantidade;
+    printf("Item %s foi reabastecido, nova quantidade: %d %s\n", 
+        ingredientes[item-1].nome, 
+        ingredientes[item-1].quantidade,
+        ingredientes[item-1].unidadeMedida);
 }
 
 int main() {
     Ingrediente ingredientes[TAMANHO_ARRAY_INGREDIENTES];
     inicializarIngredientes(ingredientes);
 
-    for (int i = 0; i < 7; i++) { 
-        imprimirIngrediente(ingredientes[i]);
-    }
-
     Pocao pocoes[TAMANHO_ARRAY_POCOES];
     inicializarPocoes(pocoes);
 
-    for (int i = 0; i < TAMANHO_ARRAY_POCOES; i++) {
-        imprimirPocao(pocoes[i]);
+    int opcao = -1;
+    while (opcao != 4) {        
+        printf("\nBem vindo ao sistema de gerenciamento de pocoes e alquimia!");
+        opcao = lerOpcaoMenu();
+        limparTela();
+        switch (opcao) {
+            case 1: 
+                consultarIngredientes(ingredientes); break;
+            case 3:
+                reabastecerIgrediente(ingredientes); break;
+            case 4: 
+                printf("Saindo do sistema"); break;
+            default:
+                printf("Erro: opcao nao reconhecida"); break;
+        }
     }
     
     return 0;
