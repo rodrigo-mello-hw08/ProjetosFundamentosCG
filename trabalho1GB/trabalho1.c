@@ -23,8 +23,8 @@ typedef struct {
 
 /* limpar tela */
 void limparTela() {
-    printf("\nCarregando");
-    for (int i = 0; i < 5; i++) {
+    printf("\nCarregando.");
+    for (int i = 0; i < 3; i++) {
         printf(".");
         sleep(1);
     }
@@ -127,14 +127,79 @@ void reabastecerIgrediente(Ingrediente* ingredientes) {
         ingredientes[item-1].unidadeMedida);
 }
 
-// void prepararPocao(Ingrediente* ingredientes, Pocao* pocoes) {
-    // bool possuiIngredientes = false;
-    // int item = -1;
-    // while (item < 1) {
-    //     printf("\nInforme a pocao que deseja preparar: ");
-    //     scanf(" %d", &item);
-    // }
-// }
+int selecionarPocao() {
+    int pocaoSelecionada = -1;
+    while (pocaoSelecionada < 1 || pocaoSelecionada > TAMANHO_ARRAY_POCOES) {
+        printf("\nInforme a pocao que deseja preparar: ");
+        scanf(" %d", &pocaoSelecionada);
+        if (pocaoSelecionada < 1 || pocaoSelecionada > TAMANHO_ARRAY_POCOES) {
+            printf("Opcao invalida");
+        }
+    }
+    return pocaoSelecionada;
+}
+
+void fabricarPocao(Ingrediente* ingredientes, Pocao* pocoes, int indicePocaoDesejada) {
+    bool possuiIngredientes = true;
+    Pocao pocaoDesejada = pocoes[indicePocaoDesejada-1];
+
+    int indiceIngredientesEmFalta[7] = {-1, -1, -1, -1, -1, -1, -1};
+    int qtdIngredientesEmFalta[7] = {-1, -1, -1, -1, -1, -1, -1}; 
+
+    int indicesIngredientesUtilizados[7] = {-1, -1, -1, -1, -1, -1, -1};
+    int qtdIngredientesUtilizados[7] = {-1, -1, -1, -1, -1, -1, -1};
+
+    for (int i = 0; i < TAMANHO_ARRAY_INGREDIENTES; i++) {
+        int indiceIngredienteRequerido = pocaoDesejada.ingredientes[i];
+        if (indiceIngredienteRequerido < 0) {
+            continue; //desconsidera ingredientes invalidos
+        } 
+        
+        int qtdRequerida = pocaoDesejada.quantidades[i];
+        if (ingredientes[indiceIngredienteRequerido].quantidade < qtdRequerida) {
+            possuiIngredientes = false;
+            indiceIngredientesEmFalta[i] = indiceIngredienteRequerido;
+            qtdIngredientesEmFalta[i] = qtdRequerida;
+        } else {
+            indicesIngredientesUtilizados[i] = indiceIngredienteRequerido;
+            qtdIngredientesUtilizados[i] = qtdRequerida;
+        }
+    }
+
+    if (!possuiIngredientes) {
+        printf("\nNao foi possivel preparar a pocao! \nIngredientes em falta:");
+        for (int i = 0; i < TAMANHO_ARRAY_INGREDIENTES; i++) {  
+            if (indiceIngredientesEmFalta[i] < 0) {
+                continue; //desconsidera ingredientes invalidos
+            }
+            
+            int posicaoIngredienteEmFalta = indiceIngredientesEmFalta[i];            
+            Ingrediente ingredienteEmFalta = ingredientes[posicaoIngredienteEmFalta];
+            printf("\n%d. %s: necessario %d %s, disponivel %d %s", 
+                i+1,
+                ingredienteEmFalta.nome,                    
+                qtdIngredientesEmFalta[i],
+                ingredienteEmFalta.unidadeMedida,
+                ingredienteEmFalta.quantidade,
+                ingredienteEmFalta.unidadeMedida);            
+        }        
+    } else {
+        for (int i = 0; i < TAMANHO_ARRAY_INGREDIENTES; i++) {
+            if (indicesIngredientesUtilizados[i] < 0) {
+               continue; //desconsidera ingredientes invalidos
+            }
+            
+            int posicaoIngredienteUtilizado = indicesIngredientesUtilizados[i];
+            ingredientes[posicaoIngredienteUtilizado].quantidade -= qtdIngredientesUtilizados[i];
+        }
+        
+        printf("\nPocao criada com sucesso!");
+        estoqueAtual(ingredientes);
+    }
+    printf("\n");
+}
+
+
 
 int obterNumeroIngredientes(Pocao pocao) {
     int numero = 0;
@@ -164,6 +229,13 @@ void exibirPocoes(Pocao* pocao, Ingrediente* ingrediente) {
     }
 }
 
+void prepararPocao(Ingrediente* ingredientes, Pocao* pocoes) {
+    exibirPocoes(pocoes, ingredientes);
+    int pocaoSelecionada = selecionarPocao();
+    limparTela();
+    fabricarPocao(ingredientes, pocoes, pocaoSelecionada);  
+}
+
 int lerOpcaoMenu() {
     int opcao = -1;
     while (opcao < 1) {
@@ -171,7 +243,8 @@ int lerOpcaoMenu() {
         printf("\n2. Preparar Pocao");
         printf("\n3. Reabastecer Ingrediente");
         printf("\n4. Sair do Programa");
-        printf("\n5. Exibir possiveis pocoes\n");
+        printf("\n5. Exibir possiveis pocoes");
+        printf("\n\nQual acao deseja realizar? ");
         scanf(" %d", &opcao);    
     }
     return opcao;
@@ -192,6 +265,8 @@ int main() {
         switch (opcao) {
             case 1: 
                 consultarIngredientes(ingredientes); break;
+            case 2:
+                prepararPocao(ingredientes, pocoes); break;
             case 3:
                 reabastecerIgrediente(ingredientes); break;
             case 4: 
