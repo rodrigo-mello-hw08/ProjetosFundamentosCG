@@ -22,4 +22,5 @@ Repositório contendo os algoritmos da cadeira de **Algoritmos e Programação: 
 
 ## Provas
 - [Prova Grau A](https://github.com/rodrigo-mello-hw08/ProjetosFundamentosCG/tree/main/provaGA-RodrigoMello)
+- [Prova Grau B](https://github.com/rodrigo-mello-hw08/ProjetosFundamentosCG/tree/main/provaGB-RodrigoMello)
 
